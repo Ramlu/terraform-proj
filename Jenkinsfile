@@ -23,7 +23,7 @@ pipeline {
     post {
         always {
             // This will always run after the pipeline ends (successful or failed)
-            echo 'Hello how are you'
+            echo 'Hello how are you, super'
         }
         success {
             // Run this block if the pipeline succeeded
