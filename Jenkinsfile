@@ -16,16 +16,7 @@ pipeline {
     }
 
     post {
-        always {
-            // This will always run after the pipeline ends (successful or failed)
-            echo 'Hello how are you, super'
-        }
         success {
-
-        echo "JOB_NAME: ${env.JOB_NAME}"
-        echo "BUILD_NUMBER: ${env.BUILD_NUMBER}"
-        echo "BUILD_URL: ${env.BUILD_URL}"
-
             // Run this block if the pipeline succeeded
           mail to: 'naveenramlu@gmail.com',
      subject: "Build Success: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
