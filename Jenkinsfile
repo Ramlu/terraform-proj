@@ -18,38 +18,12 @@ pipeline {
             }
         }
 
-        stage('Terraform Init') {
-            steps {
-                script {
-                    // Run 'terraform init' to initialize the working directory containing Terraform configuration files
-                    sh 'terraform init'
-                }
-            }
-        }
-
-        stage('Terraform Format') {
-            steps {
-                script {
-                    // Run 'terraform fmt' to format Terraform code (optional but recommended)
-                    sh 'terraform fmt -check -diff'  // -check will only check if formatting is correct, -diff shows the differences
-                }
-            }
-        }
-
-        stage('Terraform Plan') {
-            steps {
-                script {
-                    // Run 'terraform plan' to create an execution plan
-                    sh 'terraform plan -out=tfplan'  // Generate the plan and output to a file 'tfplan'
-                }
-            }
-        }
     }
 
     post {
         always {
             // This will always run after the pipeline ends (successful or failed)
-            echo 'Terraform Pipeline Finished.'
+            echo 'Hello how are you'
         }
         success {
             // Run this block if the pipeline succeeded
