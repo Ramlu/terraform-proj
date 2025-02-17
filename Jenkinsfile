@@ -24,16 +24,16 @@ pipeline {
             // Run this block if the pipeline succeeded
            emailext(
                 to: 'naveenramlu@gmail.com',
-                subject: 'Build Success: ${currentBuild.fullDisplayName}',
+                subject: 'Build Success: ${env.JOB_NAME} #${env.BUILD_NUMBER}',
                 body: '''\
 Hello,
 
-The build for ${JOB_NAME} with build number ${BUILD_NUMBER} was successful!
+The build for ${env.JOB_NAME} with build number ${env.BUILD_NUMBER} was successful!
 
 Here are the details:
-- Job: ${JOB_NAME}
-- Build Number: ${BUILD_NUMBER}
-- Build URL: ${BUILD_URL}
+- Job: ${env.JOB_NAME}
+- Build Number: ${env.BUILD_NUMBER}
+- Build URL: ${env.BUILD_URL}
 
 Best Regards,
 Jenkins
