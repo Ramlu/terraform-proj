@@ -1,11 +1,6 @@
 pipeline {
     agent any
 
-    environment {
-        TF_VERSION = '1.4.0'  // Specify the version of Terraform you want to use
-        AWS_REGION = 'us-east-1'  // Specify your AWS region
-    }
-
     stages {
         stage('CleanWS') {
             steps {
@@ -27,7 +22,23 @@ pipeline {
         }
         success {
             // Run this block if the pipeline succeeded
-            echo 'Terraform Plan Successful!'
+           emailext(
+                to: 'naveenramlu@gmail.com',
+                subject: 'Build Success: ${currentBuild.fullDisplayName}',
+                body: '''\
+Hello,
+
+The build for ${JOB_NAME} with build number ${BUILD_NUMBER} was successful!
+
+Here are the details:
+- Job: ${JOB_NAME}
+- Build Number: ${BUILD_NUMBER}
+- Build URL: ${BUILD_URL}
+
+Best Regards,
+Jenkins
+'''
+)
         }
         failure {
             // Run this block if the pipeline failed
