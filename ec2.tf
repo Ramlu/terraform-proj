@@ -15,6 +15,7 @@ data "aws_ami" "ubuntu" {
 }
 
 resource "aws_instance" "web" {
+  # Add the instance
   ami                  = data.aws_ami.ubuntu.id
   instance_type        = "t2.medium"
   availability_zone    = "ap-south-1a"
