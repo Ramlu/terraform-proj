@@ -21,11 +21,15 @@ pipeline {
             echo 'Hello how are you, super'
         }
         success {
+
+        echo "JOB_NAME: ${env.JOB_NAME}"
+        echo "BUILD_NUMBER: ${env.BUILD_NUMBER}"
+        echo "BUILD_URL: ${env.BUILD_URL}"
+
             // Run this block if the pipeline succeeded
-           emailext(
-                to: 'naveenramlu@gmail.com',
-                subject: 'Build Success: ${env.JOB_NAME} #${env.BUILD_NUMBER}',
-                body: '''\
+          mail to: 'naveenramlu@gmail.com',
+     subject: "Build Success: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+     body: """\
 Hello,
 
 The build for ${env.JOB_NAME} with build number ${env.BUILD_NUMBER} was successful!
@@ -37,8 +41,8 @@ Here are the details:
 
 Best Regards,
 Jenkins
-'''
-)
+"""
+
         }
         failure {
             // Run this block if the pipeline failed
