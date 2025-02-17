@@ -13,30 +13,6 @@ pipeline {
             }
         }
 
-        stage('Terraform Init') {
-            steps {
-                script {
-                    // Initialize Terraform working directory
-                    sh 'terraform init'
-                }
-            }
-        }
-        stage('Terraform Plan') {
-            steps {
-                script {
-                    // Run Terraform Plan to check the execution plan
-                    sh 'terraform plan -out=tfplan'
-                }
-            }
-        }
-        stage('Terraform Apply') {
-            steps {
-                script {
-                    // Apply the Terraform plan to make the changes
-                    sh 'terraform apply -auto-approve tfplan'
-                }
-            }
-        }
 
     }
 
